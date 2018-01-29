@@ -3,7 +3,7 @@ layout: post
 title:  "[HTTP: The Definitive Guide] 1. HTTP Overview"
 date:   2018-01-26 18:29:16 +0900
 background: '/img/posts/03.jpg'
-categories: http, network
+categories: http
 ---
 
 ## HTTP
