@@ -2,7 +2,7 @@
 body {
   font-size: 20px;
   color: $gray-900;
-  @include serif-font;
+  @include sans-serif-font;
 }
 
 p {
@@ -75,3 +75,20 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+table {
+  margin: 1em auto;
+  border: 1px solid #A9A9A9;
+}
+
+th {
+  border: 1px solid #A9A9A9;
+  background: #e6e6e6;
+  text-align: center;
+}
+
+td {
+  border: 1px solid #A9A9A9;
+  padding: 10px;
+}
+
