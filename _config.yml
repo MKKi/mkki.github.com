@@ -17,3 +17,7 @@ paginate_path:     "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
+
+# Google Analytics
+google_analytics:
+  ua: 'UA-113137558-1'
