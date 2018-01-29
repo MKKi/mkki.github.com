@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[HTTP: The Definitive Guide] 2. URL & Resource"
-date:   2018-01-26 18:29:16 +0900
+date:   2018-01-29 15:32:33 +0900
 background: '/img/posts/04.jpg'
 categories: http
 ---
