@@ -92,3 +92,8 @@ td {
   padding: 10px;
 }
 
+code {
+  background: #d6d8db;
+  @include sans-serif-font;
+}
+
