@@ -110,6 +110,11 @@ table {
   }
 }
 
+dd {
+  margin: 5px 0 15px;
+}
+
+
 // code highlight
 code.highlighter-rouge{
   @include sans-serif-font;
