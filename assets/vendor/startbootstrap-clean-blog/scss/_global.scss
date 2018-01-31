@@ -33,9 +33,18 @@ a {
 }
 
 blockquote {
-  font-style: italic;
-  color: $gray-600;
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777;
+  margin: 15px 0;
 }
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
 
 .section-heading {
   font-size: 36px;
