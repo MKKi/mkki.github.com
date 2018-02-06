@@ -503,3 +503,7 @@ attribute. HTTP header names are not case sensitive.
 서버는 캐시로부터 정기적으로 `캐시된 문서`가 적중한 횟수를 받는다.
 : 추가적으로 서버는 캐시가 서버에게 보고해야 하기 전까지 문서를 제공할 수 있는 `횟수`나 `처리시간`을 제어할 수 잇다.
 이를 `사용량 제한`이라고 부른다. 이를 통해 캐시된 리소스의 사용량을 서버가 제한할 수 있게 된다.
+
+## Reference
+---
+HTTP: The Definitive Guide
