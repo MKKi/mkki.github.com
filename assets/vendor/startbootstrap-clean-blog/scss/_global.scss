@@ -28,6 +28,7 @@ a {
   @include transition-all;
   &:focus,
   &:hover {
+    font-weight: bold;
     color: $primary;
   }
 }
