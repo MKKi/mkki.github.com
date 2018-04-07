@@ -6,7 +6,7 @@ background: '/img/posts/04.jpg'
 categories: intellij
 ---
 
-### server.xml 생성
+### context.xml 생성
 ---
 이클립스와 달리 인텔리제이는 톰캣의 **context.xml**이 없다.
 
