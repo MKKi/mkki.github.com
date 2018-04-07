@@ -86,6 +86,12 @@ img::-moz-selection {
   background: transparent;
 }
 
+img {
+  max-width:100% !important;
+  height:auto;
+  display:block;
+}
+
 table {
   margin-bottom: $spacing-unit;
   width: 100%;
