@@ -12,24 +12,8 @@ categories: vue.js
 1. `data` 옵션
 - data 옵션에 주어진 모든 속성들은 Vue 인스턴스 내부에서 직접 이용되지 않고 Vue 인스턴스와 data 옵션에 주어진 객체 사이에 `프록시`를 두어 처리한다.
 > 여기서 프록시란, 다른 클래스의 인터페이스로 동작하는 클래스이다.
-- 다음 예시를 크롬 개발자 도구에서 실행해보자. data 옵션값이 Vue 인스턴스에 의해 프록시 처리되어 `vm.name`과 같이 사용할 수 있다.
-직접 data 옵션을 통해 접근하고 싶다면 `vm.$data.name`과 같이 접근할 수 있다.
+- data 옵션값이 Vue 인스턴스에 의해 프록시 처리되어 `vm.name`과 같이 사용할 수 있다. 직접 data 옵션을 통해 접근하고 싶다면 `vm.$data.name`과 같이 접근할 수 있다.
 > 내장 옵션들은 모두 `$`식별자를 앞에 붙이고 있는데, 이름 충돌을 피하기 위한 것이다.
-~~~
-    <div id="test">
-        {% raw %}{{name}}{% endraw %}
-    </div>
-    
-    <script>
-        var model = {
-            name: 'sample name'
-        }
-        var simple = new Vue({
-            el: '#test',
-            data: model
-        })
-    </script>
-~~~
 
 2. `el` 옵션
 - el 옵션은 Vue 인스턴스에 연결할 `HTML DOM 요소`를 지정한다. 단 여러 개 요소에 지정할 수 없다.
