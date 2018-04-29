@@ -11,7 +11,7 @@ categories: vue.js
 1. `{% raw %}{{}}{% endraw %}` 템플릿 표현식을 사용해 선언적으로 HTML DOM에 데이터를 **렌더링**한다.
 콧수염 표현식(Mustache Expression), 보간법(Interpolation)이라고 한다.
 이 코드만으로도 모든 작업은 반응형으로 이루어진다.
-> 렌더링이란?
+> 렌더링이란? 브라우저의 렌더링 엔진이 HTML 요소를 화면에 표시하는 작업
  
 2. `MVVM` Model-View-ViewModel 구조
 - `Model` 데이터를 갖고 있는 객체이다. 도메인 특화 데이터를 다룬다.
