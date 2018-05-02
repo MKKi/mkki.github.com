@@ -1,0 +1,36 @@
+---
+layout: page
+title: Category
+description:
+background: '/img/posts/1.jpg'
+---
+
+{% for category in site.categories %}
+<h1 id="{{ category[0] }}">{{ category[0] | capitalize }}</h1>
+<hr>
+{% assign pages_list = category[1] %}
+{% for post in pages_list %}
+{% if post.title != null %}
+{% if group == null or group == post.group %}
+<article class="category-preview ml-3">
+    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+        <h4 class="category-title">{{ post.title }}
+        </h4>
+    </a>
+    <p class="category-meta">Posted by
+        {% if post.author %}
+        {{ post.author }}
+        {% else %}
+        {{ site.author }}
+        {% endif %}
+        on
+        {{ post.date | date: '%B %d, %Y' }}
+    </p>
+</article>
+{% endif %}
+{% endif %}
+{% endfor %}
+<br>
+{% assign pages_list = nil %}
+{% assign group = nil %}
+{% endfor %}

@@ -202,3 +202,22 @@ code.highlighter-rouge{
   max-width:100% !important;
   height:auto;
 }
+
+// category
+.category-preview > a {
+  color: #212529; }
+.category-preview > a:focus, .category-preview > a:hover {
+  text-decoration: none;
+  color: #0085A1; }
+.category-preview > a > .category-title {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 5px; }
+.category-preview > a > .category-subtitle {
+  font-weight: 300;
+  margin: 0 0 10px; }
+.category-preview > .category-meta {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  color: #868e96; }
