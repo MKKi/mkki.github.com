@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Vue.js Quick Start] ECMAScript 2015"
+title:  "[Vue.js Quick Start] ECMAScript 2015 - 1"
 date:   2018-05-02 00:43:11 +0900
 background: '/img/posts/04.jpg'
 categories: [vue.js, js]
