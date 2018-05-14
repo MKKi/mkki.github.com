@@ -16,7 +16,7 @@ categories: [vue.js, eslint]
 
 별도의 키 값이 없는 배열이라 인덱스를 키 값으로 바인딩하여 해결하였다.
 ~~~
-  <tr v-for="(index, contact) in contactlist.contacts" :key="index">
+  <tr v-for="(contact, index) in contactlist.contacts" :key="index">
     ...
   </tr>
 ~~~
