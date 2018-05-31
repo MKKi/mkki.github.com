@@ -184,7 +184,25 @@ JDK 설치 후 다음 3가지의 환경변수 설정이 필요하다.
 WAS에서 동작하는 자바 클래스이고, `HttpServlet` 클래스를 상속받는다.
  
 ### Servlet 작성 방법
+Servlet 3.1 버전 이상부터는 `어노테이션(Annotation)`을 사용하여 URL을 매핑한다.
 
+### Servlet Life Cycle
+HttpServlet은 `init()`, `service()`, `destroy()` 3가지 메서드를 오버라이딩한다.
+
+WAS가 서블릿 요청을 받으면, 서블릿 클래스가 메모리에 있는지 확인한다. 만약 없다면, 메모리에 로드하기 위해 생성자를 통해 서블릿 객체를 생성하고 `init()` 메서드를 호출한다.
+애플리케이션이 종료되면 `destroy()` 메서드가 호출되고 서블릿이 소멸되고, 서블릿 클래스의 내용이 수정되었을 때 소멸 후 객체가 다시 생성된다.
+
+`HttpServlet`에 `service()` 메서드를 템플릿 메서드 패턴으로 구현되어 있다.
+
+### Request, Response 객체 이해하기
+WAS는 브라우저로부터 서블릿 요청을 받으면, `HttpServletRequest`, `HttpServletResponse` 객체를 생성하고 서블릿에게 전달한다.
+
+`HttpServletRequest`는 헤더 정보, 파라미터, 쿠키 등의 정보를 읽어들이는 메서드를 가지고 있다. 또한, **Request Body의 Stream**을 읽어들이는 메서드도 가지고 있다.
+> `GET` 메서드로 요청 시 쿼리스트링으로 넘어오는 것이 파라미터이다.
+
+`HttpServletResponse`는 요청을 보낸 클라이언트로 응답을 보내기 위해 생성되는 객체이다. Content-Type, 응답 메시지 등을 전송한다.
+
+`getRemoteAddr()` 메서드는 클라이언트의 주소 값을 가져온다.
 
 ## References
 ---
