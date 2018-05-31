@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Codility Lesson 11 CountNotDivisible"
-date:   2018-05-30 16:57:11 +0900
+date:   2018-05-31 16:57:11 +0900
 background: '/img/posts/05.jpg'
 categories: [codility]
 ---

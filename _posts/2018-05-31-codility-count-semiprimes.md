@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Codility Lesson 11 Count Semiprimes"
-date:   2018-05-30 15:50:11 +0900
+date:   2018-05-31 15:50:11 +0900
 background: '/img/posts/04.jpg'
 categories: [codility]
 ---
