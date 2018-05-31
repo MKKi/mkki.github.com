@@ -3,7 +3,7 @@ layout: post
 title:  "Codility Lesson 8 EquiLeader"
 date:   2018-05-20 15:27:11 +0900
 background: '/img/posts/03.jpg'
-categories: [algorithm]
+categories: [codility]
 ---
 
 ### Codility Lesson 8 EquiLeader
