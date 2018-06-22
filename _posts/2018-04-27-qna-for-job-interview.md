@@ -557,10 +557,24 @@ Java8 부터 인터페이스에 `default()` 메서드가 추가되어 사실 상
 ### OCP 원칙이란?
 
 ### SOLID 원칙
-1. `SRP(Single Responsibility Principal)`
+1. `SRP(Single Responsibility Principal, 단일책임원칙)`
 각 객체는 하나의 책임만을 가지고 있어야 한다.
 
-2. `OCP()`
+2. `OCP(Open-Close Principle, 개방-폐쇄원칙)`
+소프트웨어 구성요소는 확장에는 열려있고, 변경에는 닫혀있어야 한다.
+
+3. `LSP(The Liskov Substitution Principle, 리스코프 치환 법칙)`
+부모가 자식을 대체 가능하게 설계해라.
+> 즉, 인터페이스만 알면 구현체를 몰라도 사용 가능해야 한다.
+
+4. `ISP(Interface Segregation Principle, 인터페이스 분리 법칙)`
+불필요한 것을 갖지 않도록 인터페이스로 분리해라.
+> 하나의 일반적인 인터페이스보다는, 여러 개의 구체적인 인터페이스가 낫다
+
+5. `DIP(Dependency Inversion Principle, 의존성역전법칙)`
+하위 클래스가 상위 클래스에 의존 하되, 두 가지 모두 추상에 의존해야 된다.
+> `List<Interger> list = new ArrayList<>()` 처럼 추상화된 것에 의존해야 느슨한 결합을 유지할 수 있다.
+
 
 ### AutoBoxing
 Primitive Type 데이터를 Wrapper Class Type으로 자동 형변환 해주는 것을 `AutoBoxing`이라 하고, 반대를 `UnBoxing`이라 한다.
