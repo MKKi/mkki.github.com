@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "[Algorithm] Sliding Window Algorithm"
-date:   2018-07-26 22:32:11 +0900
-background: '/img/posts/02.jpg'
+date:   2018-10-22 21:16:11 +0900
+background: '/img/posts/04.jpg'
 categories: [algorithm]
 ---
 
