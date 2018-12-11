@@ -23,5 +23,5 @@ categories: [algorithm]
 
 ### References
 ---
-위키, [슬라이딩 윈도](https://ko.wikipedia.org/wiki/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%94%A9_%EC%9C%88%EB%8F%84)
-라이님 블로그, [투 포인터(Two Pointers Algorithm), 슬라이딩 윈도우(Sliding Window)](http://blog.naver.com/PostView.nhn?blogId=kks227&logNo=220795165570)
+- 위키, [슬라이딩 윈도](https://ko.wikipedia.org/wiki/%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%94%A9_%EC%9C%88%EB%8F%84)
+- 라이님 블로그, [투 포인터(Two Pointers Algorithm), 슬라이딩 윈도우(Sliding Window)](http://blog.naver.com/PostView.nhn?blogId=kks227&logNo=220795165570)
