@@ -1,10 +1,13 @@
 ---
 layout: post
-title:  "basic concept of javascript"
-date:   2018-04-27 09:00:11 +0900
+title:  "[Interview] 신입 개발자 면접 기초"
+date:   2018-12-20 09:00:11 +0900
 background: '/img/posts/05.jpg'
 categories: interview
 ---
+
+정리가 덜 된 포스트입니다. 지속적으로 추가할 예정입니다.
+
 ## Network
 ---
 - 이더넷이란 `LAN`에서 가장 많이 활용되는 네트워크 기술 규격이다. 인터넷을 도로라면, 이더넷은 교통으로 볼 수 있다.
