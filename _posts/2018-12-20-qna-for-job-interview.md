@@ -96,9 +96,26 @@ In-Memory 저장소이다. 데이터가 메모리에만 저장되므로 속도�
 
 ### 메모리 영역 4가지
 
-### blocking, non-blocking, synchronous, asynchronous
 
+### Polling, Long-Polling, Web-Socket
 
+### Blocking, Non-Blocking, Synchronous, Asynchronous
+1. `Blocking`
+    - 애플리케이션 실행 시 운영체제 대기 큐에 들어가고, 요청에 대한 **System Call**이 완료 된 후에 응답을 보낸다.
+    > 시스템 호출(System Call)이란, 애플리케이션의 요청에 따라 커널에 접근하기 위한 인터페이스이다.
+    - 시스템의 반환을 기다리는 동안 대기 큐에 머무는 것이 필수이다.
+2. `Non-Blocking`
+    - 애플리케이션 실행 시 운영체제 대기 큐에 들어가지 않고, 실행 여부와 상관없이 바로 응답을 보낸다.
+    - **System Call**이 반환될 때, 실행된 결과와 함께 반환된다.
+    - 요청에 대해 바로 응답할 수 있는 경우 응답하고, 아니면 에러를 반환한다. 만약 에러를 받는다면 계속해서 요청을 다시 보낸다.
+    > `Polling` 방식의 구조를 생각하면 된다.
+3. `Synchronous`
+    - **API Call**을 보낸 후 응답을 받을 때까지 대기하고, 응답을 받은 후 종료된다.
+    - 시스템의 반환을 기다리는 동안 대기 큐에 머무는 것이 필수가 아니다.
+4. `Asynchronous`
+    - **API Call**을 보낸 후 실행 여부와 상관없이 바로 응답을 받는다.
+    - **System Call**이 반환될 때, 실행된 결과와 함께 반환되지 않는다.
+    - 요청에 대한 처리 완료 여부와 상관없이 바로 응답한다.
 
 ### 뮤텍스 세마포어
 - slideshare 참고
@@ -157,8 +174,7 @@ Session Tracking에서 세션 ID를 운반할 때 사용된다.
 ![cache](../img/cache.PNG)
 > Chrome Network Stack
 
-`.css`, `.js`, 이미지 파일 등이 사용자의 브라우저에 
-
+`.css`, `.js`, 이미지 파일 등이 사용자의 브라우저 캐시에 저장된다.
 
 결국, 같은 웹 페이지 접속 시 페이지 로딩 속도를 개선해주는 것이 캐시의 목적이다.
 
@@ -209,7 +225,7 @@ CDN은 `origin`이라고도 불리는 콘텐츠 서버와 엔드유저(클라이
 > 라운도 로빈 스케쥴링(Round Robin Scheduling, RR)이란, 우선순위를 두지 않고 순서대로 시간 단위로 CPU를 할당하는 CPU 스케쥴링 알고리즘이다.
 
 
-여러 개의 컴퓨터를 연결한 병렬 시스템으로 마치 하나의 컴퓨터처럼 사용하는 것을 `클러스터`라고 한다.
+여러 개의 컴퓨터를 연결한 병렬 시스템으로 마치 하나의 컴퓨터처럼 사용하는 것을 `클러스터링`이라고 한다.
 클러스터링 환경에서는 특정 잡기에 문제가 생기거나 특정 장비에서 실행 중인 애플리케이션에 문제가 발생하더라도 서비스에 영향이 미치지 않도록 제어가 가능하다.
 
 `클러스터링(Clustering)`은 기본적으로 가상 IP 기반으로 구현된다. 서비스를 제공하는 실제 장비는 물리적인 IP를 갖고, 데이터 처리는 가상 IP를 통해 이루어진다.
@@ -296,7 +312,8 @@ CDN은 `origin`이라고도 불리는 콘텐츠 서버와 엔드유저(클라이
 그리고 각각의 서비스는 다른 서비스와 상호 작용을 위해 다른 서비스에서 공개하는 API 형태인 추상화된 인터페이스를 사용한다.
 
 ### SOAP
-널리 알려진 HTTP, HTTPS, SMTP 등을 통해 XML 기반의 메시지를 컴퓨터 네트워크 상에서 교환하는 프로토콜이다.
+`SOA(Service Oriented Archtecture, 서비스 지향 구조)`에 근거한 소프트웨어 아키텍처이다.
+
 
 ### 모노리틱 아키텍쳐
 하나의 서버에 모든 비즈니스 로직이 들어가 있는 형태
@@ -326,6 +343,30 @@ CDN은 `origin`이라고도 불리는 콘텐츠 서버와 엔드유저(클라이
 서비스란 단일된 기능 묶음으로 개발된 서비스 컴포넌트이다. REST API 등으로 기능을 제공하고, 데이터를 공유하지 않고 독립적으로 가공하고 저장한다.
 
 ### REST
+웹의 기존 기술과 HTTP 프로토콜을 그대로 활용하기 때문에 웹의 장점을 최대한 활용할 수 있는 소프트웨어 아키텍처 중 하나이다.
+> HTTP URI로 명시된 자원을 HTTP Method로 처리하도록 적용하는 것을 의미한다.
+
+REST는 네트워크 상에서 Client와 Server 사이의 통신 방식 중 하나이다.
+
+#### 장점
+HTTP 프로토콜의 인프라를 그대로 사용하므로 REST API 사용을 위한 별도의 인프라를 구출할 필요가 없다.
+HTTP 프로토콜의 표준을 최대한 활용하여 여러 추가적인 장점을 함께 가져갈 수 있게 해준다.
+HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용이 가능하다.
+Hypermedia API의 기본을 충실히 지키면서 범용성을 보장한다.
+REST API 메시지가 의도하는 바를 명확하게 나타내므로 의도하는 바를 쉽게 파악할 수 있다.
+여러가지 서비스 디자인에서 생길 수 있는 문제를 최소화한다.
+서버와 클라이언트의 역할을 명확하게 분리한다.
+
+#### 단점
+표준이 존재하지 않는다.
+사용할 수 있는 메소드가 4가지 밖에 없다.
+HTTP Method 형태가 제한적이다.
+> 예를 들어, '메일을 전송한다.'를 표현하려면 어떻게 해야할까?
+
+브라우저를 통해 테스트할 일이 많은 서비스라면 쉽게 고칠 수 있는 URL보다 Header 값이 왠지 더 어렵게 느껴진다.
+구형 브라우저가 아직 제대로 지원해주지 못하는 부분이 존재한다.
+PUT, DELETE를 사용하지 못하는 점
+pushState를 지원하지 않는 점
 
 ### gzip, chunked transfer encoding, CSS Sprite, Lazy Loading
 
@@ -944,9 +985,9 @@ SI와 외주의 차이는?
 - 객체지향의 사실과 오해: 역할, 책임, 협력 관점에서 본 객체지향, 위키북스, 조용호 지음.
 - Leopold Baik, [Java String 의 메모리에 대한 고찰](https://medium.com/@joongwon/string-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0-57af94cbb6bc)
 - 권용찬님 블로그, [오랜만에 Garbage Collection 정리](https://yckwon2nd.blogspot.kr/2014/04/garbage-collection.html)
-- 위키, 
 - Akamai, [CND이란 무엇인가요](http://cdn.hosting.kr/cdn%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/)
 - Jbee님 블로그, [[개발상식] 10. Cookie / Session / Cache](http://asfirstalways.tistory.com/68)
 - 네이버 D2, [확장성 있는 웹 아키텍처와 분산 시스템](https://d2.naver.com/helloworld/206816)
 - 네이버 D2, [Android 웹뷰의 캐시 분석](https://d2.naver.com/helloworld/1059747)
 - 이동욱님 블로그, [인덱스 정리 및 팁](http://jojoldu.tistory.com/243)
+- SLiPP, [sync와 async, blocking과 non-blocking 차이점은?](https://www.slipp.net/questions/367)
