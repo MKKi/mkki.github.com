@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "[boostcourse] 웹 프로그래밍 기초"
-date:   2018-05-19 14:27:11 +0900
+date:   2019-07-12 17:38:11 +0900
 background: '/img/posts/03.jpg'
 categories: [boostcourse]
 ---
 
-해당 포스팅은 [커넥트재단의 edwith boostcourse - Full-Stack Web Developer](http://www.edwith.org/boostcourse-web)의 강의 자료를 바탕으로 작성되었습니다.
+해당 포스팅은 [커넥트재단의 edwith boostcourse - Web Programming](http://www.edwith.org/boostcourse-web)의 강의 자료를 바탕으로 작성되었습니다.
 
 ## Web 개발의 이해 - FE/BE
 ---
@@ -36,7 +36,7 @@ categories: [boostcourse]
 다음은 브라우저의 렌더링 엔진 처리과정이다. [Vue.js 첫 포스팅](https://mkki.github.io/vue.js/2018/04/27/start-vuejs-1.html)
 에서 가상 DOM 관련 내용을 정리하면서 봤던 익숙한 그림이다.
 
-![browser-work-flow](/img/browser-work-flow.png)
+![browser-work-flow](https://user-images.githubusercontent.com/28993371/61115462-7930c100-a4cd-11e9-9eb4-c56f7d2bd474.png)
 > 브라우저의 Workflow
 
 HTML과 CSS를 해석해서 `DOM Tree`와 `CSS Tree(CSS Object Model)`가 만들어지고, 다시 `Render Tree`로 다시 조합된다.
