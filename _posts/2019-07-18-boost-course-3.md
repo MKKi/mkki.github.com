@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[boostcourse] DB 연결 웹 앱 - 1"
+title:  "[boostcourse] 웹 앱 개발:예약서비스 1/4 - 1"
 date:   2019-07-18 19:31:11 +0900
 background: '/img/posts/01.jpg'
 categories: [boostcourse]
