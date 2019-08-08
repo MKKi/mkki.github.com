@@ -92,7 +92,7 @@ categories: [boostcourse]
 > 잔소리라뇨!
 
 **Tab UI** 기능 구현 중 `classList`를 사용하였는데 `IE` 하위 버전 호환성 이슈가 있다는 것을 지적해주셨다.
-이후 `String.prototype.includes`로 바꾸어 다시 제출했었는데, 알고보니 `IE`에서 아예 지원하지 않는 메서드였다.
+이후 `String.prototype.includes()`로 바꾸어 다시 제출했었는데, 알고보니 `IE`에서 아예 지원하지 않는 메서드였다.
 
 리뷰어님의 조언대로 함수나 프로퍼티를 사용하기 전에 [Can-I-use](https://caniuse.com/)를 통해 확인하는 습관을 들여야겠다.
 
