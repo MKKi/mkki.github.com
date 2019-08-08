@@ -8,6 +8,8 @@ categories: [boostcourse]
 
 해당 포스팅은 [커넥트재단의 edwith boostcourse - Web Programming](http://www.edwith.org/boostcourse-web)의 강의 자료를 바탕으로 작성되었습니다.
 
+`#부스트코스` `#웹프로그래밍`
+
 ## Spring Core - BE
 ---
 ### Spring이란?
