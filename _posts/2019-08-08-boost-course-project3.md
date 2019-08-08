@@ -22,6 +22,27 @@ categories: [boostcourse]
 
 하지만 루브릭에 `CSS`를 `JS`로 제어하라는 내용이 있었기에 `setInterval()`로 처리하였다. 리뷰어님께선 `CSS`의 `animation-*` 속성을 공부하면 좋을 것이라는 조언을 해주셨다.
 
+`animation`은 다음의 단축 속성이다.
+- `animation-name`: 실행될 애니메이션의 이름
+- `animation-duration`: 애니메이션이 한 사이클을 완료하는데 걸리는 시간
+- `animation-timing-function`: 애니메이션의 각 사이클 동안의 진행 방법
+- `animation-delay`: 애니메이션의 시작 지점
+- `animation-iteration-count`: 애니메이션의 반복 횟수
+- `animation-direction`: 애니메이션이 앞으로, 뒤로 혹은 앞뒤로 번갈라며 재생하는지 여부
+- `animation-fill-mode`: 애니메이션 실행 전과 후에 스타일을 적용하는 방법
+- `animation-play-state`: 애니메이션 실행과 일시정지 여부
+    
+`MDN`에서 참고한 `animation` 속성의 예는 다음과 같다.
+~~~
+    /* @keyframes duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+    animation: 3s ease-in 1s 2 reverse both paused slidein;
+    
+    @keyframes slidein {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+~~~
+
 제출한 코드에는 포함되지 않았지만, `loop` 중 마지막 요소에서 첫 요소의 넘어갈 때의 부드러운 애니메이션 처리를 위해
 [링크](https://poiemaweb.com/fastcampus-exercise/carousel-slider-ui)를 참고하며 고민해보았다. 그리고 이 방법이 최선인지 리뷰에서 확인해보고자 했으나,
 리뷰어님과 커뮤니케이션이 잘못되어 무산되었다.
