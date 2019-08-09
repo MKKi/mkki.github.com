@@ -21,67 +21,67 @@ categories: vue.js
 
 
 - 만약 인라인 스타일을 사용해야 한다면, 스타일 객체를 직접 바인딩하는 방법이 권장된다.
-~~~
-    <p v-bind:style="style1">...</p>
-    ...
-    <script>
-        var vm = new Vue({
-            el: "#example",
-            data: {
-                style1: {
-                    ...
-                }
+```
+<p v-bind:style="style1">...</p>
+...
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            style1: {
+                ...
             }
-        })
-    </script>
-~~~
+        }
+    })
+</script>
+```
 
 - 다음과 같은 형태로 여러 개의 스타일 객체를 바인딩할 수도 있다.
-~~~
-    <p v-bind:style="[ style1, style2 ]">...</p>
-    ...
-    <script>
-        var vm = new Vue({
-            el: "#example",
-            data: {
-                style1: {
-                    ...
-                },
-                style2: {
-                    ...
-                }
+```
+<p v-bind:style="[ style1, style2 ]">...</p>
+...
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            style1: {
+                ...
+            },
+            style2: {
+                ...
             }
-        })
-    </script>
-~~~
+        }
+    })
+</script>
+```
 
 ### CSS 클래스 바인딩
 - CSS 클래스를 바인딩하기 위해서 `v-bind:class`를 사용한다. 개별적인 클래스 단위로 `true`가 되면 클래스가 주어진다.
-~~~
-    ...
-    <style>
-        .set1 { ... }
-        .set2 { ... }
-        .set3 { ... }
-    </style>
-    ...
-    <div id="example">
-        <button id="btn1" v-bind:class="mystyle"></button> 
-    </div>
-    ...
-    <script>
-        var vm = new Vue({
-            el: "#example",
-            data: {
-                mystyle: {
-                    set1: true,
-                    set2: false,
-                    set3: false
-                }
+```
+...
+<style>
+    .set1 { ... }
+    .set2 { ... }
+    .set3 { ... }
+</style>
+...
+<div id="example">
+    <button id="btn1" v-bind:class="mystyle"></button> 
+</div>
+...
+<script>
+    var vm = new Vue({
+        el: "#example",
+        data: {
+            mystyle: {
+                set1: true,
+                set2: false,
+                set3: false
             }
-        })
-    </script>
-~~~
+        }
+    })
+</script>
+```
 > `set1` CSS 클래스가 적용된다.
 
 ### 계산형 속성, 메서드를 이용한 스타일 적용
@@ -90,17 +90,17 @@ categories: vue.js
 
 ### 컴포넌트에서의 스타일 적용
 - 컴포넌트 단위에 대해서도 클래스와 스타일을 적용할 수 있다.
-~~~
-    .center {
-        text-align: center;
-    }
-    ...
-    <center-box></centerbox>
-    ...
-    Vue.component('center-box', {
-        template: '<div class="center">...</div>'
-    })
-~~~
+```
+.center {
+    text-align: center;
+}
+...
+<center-box></centerbox>
+...
+Vue.component('center-box', {
+    template: '<div class="center">...</div>'
+})
+```
 
 ## References
 ---

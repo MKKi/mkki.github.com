@@ -15,7 +15,29 @@ categories: [codility]
 
 그리고 최소 공배수의 성질에 따라 `lcm(a, b) = a * b / gcd(a, b)`이 성립한다.
 
+~~~java
+private int gcd(int a, int b) {
+    if(a % b == 0) {
+        return b;
+    }
+    
+    return gcd(b, a % b);
+}
+
+private int lcm(int a, int b) {
+    return a * b / gcd(a, b);
+}
 ~~~
+
+[문제 보기](https://app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/)
+~~~java
+class Solution {
+    public int solution(int N, int M) {
+        int gcd = gcd(N, M);
+        
+        return N / gcd; 
+    }
+    
     private int gcd(int a, int b) {
         if(a % b == 0) {
             return b;
@@ -23,29 +45,7 @@ categories: [codility]
         
         return gcd(b, a % b);
     }
-    
-    private int lcm(int a, int b) {
-        return a * b / gcd(a, b);
-    }
-~~~
-
-[문제 보기](https://app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/)
-~~~
-    class Solution {
-        public int solution(int N, int M) {
-            int gcd = gcd(N, M);
-            
-            return N / gcd; 
-        }
-        
-        private int gcd(int a, int b) {
-            if(a % b == 0) {
-                return b;
-            }
-            
-            return gcd(b, a % b);
-        }
-    }
+}
 ~~~
 
 ### Reference

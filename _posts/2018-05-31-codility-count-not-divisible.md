@@ -15,34 +15,34 @@ categories: [codility]
 
 [문제 보기](https://app.codility.com/programmers/lessons/11-sieve_of_eratosthenes/count_non_divisible/)
 
-~~~
-    class Solution {
-        public int[] solution(int[] A) {
-            // write your code in Java SE 8
-            int N = A.length;
-            int[] result = new int[N];
-            int[] table = new int[N*2 + 1];
-            
-            for(int i : A) {
-                table[i]++;
-            }
-            
-            for(int i=0; i<N; i++) {
-                int divisors = 0;
-                int current = A[i];
-                for(int j=1; j*j <= current; j++) {
-                    if(current % j == 0) {
-                        divisors += table[j];
-                        
-                        if(current / j != j) {
-                            divisors += table[current / j];
-                        }
+~~~java
+class Solution {
+    public int[] solution(int[] A) {
+        // write your code in Java SE 8
+        int N = A.length;
+        int[] result = new int[N];
+        int[] table = new int[N*2 + 1];
+        
+        for(int i : A) {
+            table[i]++;
+        }
+        
+        for(int i=0; i<N; i++) {
+            int divisors = 0;
+            int current = A[i];
+            for(int j=1; j*j <= current; j++) {
+                if(current % j == 0) {
+                    divisors += table[j];
+                    
+                    if(current / j != j) {
+                        divisors += table[current / j];
                     }
                 }
-                result[i] = N - divisors;
             }
-            
-            return result;
+            result[i] = N - divisors;
         }
+        
+        return result;
     }
+}
 ~~~

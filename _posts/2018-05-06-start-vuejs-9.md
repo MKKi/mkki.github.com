@@ -61,70 +61,70 @@ categories: [vue.js, js]
 
 - `슬롯(slot)`은 이러한 불편함을 해결하는 방법이다. 자식 컴포넌트에서 `<slot>` 태그를 작성하고, 부모 컴포넌트에서는 컨텐츠 영역에 자식 컴포넌트의 `<slot>` 영역에 나타낼 **HTML 마크업**을 작성하면 된다.
 ~~~
-    <template>
-        <speech-box :header-text="A.header" :footer-text="A.footer">
-          <div>
-            <p>{{ A.message }}</p>
-          </div>
-        </speech-box>
-    </template>
-    ...
+<template>
+    <speech-box :header-text="A.header" :footer-text="A.footer">
+      <div>
+        <p>{{ A.message }}</p>
+      </div>
+    </speech-box>
+</template>
+...
 ~~~
 > `<speech-box>` 컴포넌트의 컨텐츠로 전달한 내용이 자식 컴포넌트의 `<slot>`에 나타나기에 속성에 비해 편리하다.
 7
 ### 명명된 슬롯
 - `명명된 슬롯(named slot)`을 사용하면 컴포넌트에 여러 개의 슬롯을 작성할 수 있다.
 ~~~
-    <template>
-        <div>
-            <header>
-                <slot name="header></slot>
-            </header>
-            <section>
-                <slot name="header></slot>
-            </section>
-            <footer>
-                <slot name="header></slot>
-            </footer>
-        </div>
-    </template>
+<template>
+    <div>
+        <header>
+            <slot name="header></slot>
+        </header>
+        <section>
+            <slot name="header></slot>
+        </section>
+        <footer>
+            <slot name="header></slot>
+        </footer>
+    </div>
+</template>
 ~~~
 
 ### 범위 슬롯
 - 자식 컴포넌트에서 부모 컴포넌트로 속성을 전달한 후, 부모 컴포넌트에서 출력할 내용을 커스터마이징할 경우에 사용한다.
 ~~~
-    // child
-    <template>
-        <div>
-            <input type="text" v-model="x" /><br />
-            <slot name="exam" v-bind:nx="x"></slot>
-        </div>
-    </template>
-    
-    <script>
-        export default {
-            data() {
-                return { x: 4 }
-            }
+// child
+<template>
+    <div>
+        <input type="text" v-model="x" /><br />
+        <slot name="exam" v-bind:nx="x"></slot>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return { x: 4 }
         }
-    </script>
+    }
+</script>
+
+// parent
+<template>
+    <child>
+        <template slot="exam" scope="p1">
+            <div>{{ p1.nx }}^2 = {[ parseInt(p1.nx) }} * {[ parseInt(p1.nx) }}</div>
+        </template>
+    </child>
+</template>
+
+<script>
+    import Child from './child.vue';
     
-    // parent
-    <template>
-        <child>
-            <template slot="exam" scope="p1">
-                <div>{{ p1.nx }}^2 = {[ parseInt(p1.nx) }} * {[ parseInt(p1.nx) }}</div>
-            </template>
-        </child>
-    </template>
-    
-    <script>
-        import Child from './child.vue';
-        
-        export default {
-            components : { Child }
-        }
-    </script>
+    export default {
+        components : { Child }
+    }
+</script>
 ~~~
 
 ### 동적 컴포넌트
@@ -133,86 +133,86 @@ categories: [vue.js, js]
 
 - 만약 자식 컨텐츠가 정적 컨텐츠라면 `<component>` 요소를 `<keep-alive>` 요소로 감싸서 캐싱하면 된다.
 ~~~
-    <div>
-        <keep-alive exclude="exam1">
-            <component v-bind:is="examdata"></component>
-        </keep-alive>
-    </div>
-    ...
-    <script>
-        export default {
-            components: { exam1, exam2, exam3},
-            data() {
-                return { examdata: 'exam1' }
-            }
+<div>
+    <keep-alive exclude="exam1">
+        <component v-bind:is="examdata"></component>
+    </keep-alive>
+</div>
+...
+<script>
+    export default {
+        components: { exam1, exam2, exam3},
+        data() {
+            return { examdata: 'exam1' }
         }
-    </script>
+    }
+</script>
 ~~~
 > 특정 컴포넌트에서만 캐싱 유무를 설정하려면 `include`, `exclude` 특성으로 컴포넌트를 나열하면 된다.
 
 ### 재귀 컴포넌트
 - `재귀 컴포넌트(Recursive Component)`는 템플릿에서 **자기 자신**을 호출하는 컴포넌트이다. 반드시 `name` 옵션을 지정해야한다.
 ~~~
-    // child
-    <template>
-        <ul>
-            <li v-for="(a, index) in examlist">
-                {{ a.title }}
-                <recursive :examlist="a.examlist"></recursive>
-            </li>
-        </ul>
-    </template>
-    
-    <script>
-        export default {
-            name: 'recursive',
-            props: [ 'examlist' ]
-        }
-    </script>
-    
-    // parent
-    <template>
-        <div>
-            <recursive :examlist="list"></recursive>
-        </div>
-    </template>
-    
-    <script>
-        export default {
-            name: 'parent',
-            components : { Child },
-            data () {
-                return {
-                    list : {
-                        title: "title1", type: "title"
-                        examlist: [
-                            {
-                                title: "subtitle1", type: "subtitle",
-                                examlist: [
-                                    { title: "A", type: "item" },
-                                    { title: "B", type: "item" },
-                                ]
-                            },
-                            {
-                                title: "subtitle2", type: "subtitle",
-                                examlist: [
-                                    { title: "C", type: "item" },
-                                    { title: "D", type: "item" },
-                                ]
-                            },
-                            {
-                                title: "subtitle3", type: "subtitle",
-                                examlist: [
-                                    { title: "E", type: "item" },
-                                    { title: "F", type: "item" },
-                                ]
-                            }                          
-                        ]
-                    } 
-                }
+// child
+<template>
+    <ul>
+        <li v-for="(a, index) in examlist">
+            {{ a.title }}
+            <recursive :examlist="a.examlist"></recursive>
+        </li>
+    </ul>
+</template>
+
+<script>
+    export default {
+        name: 'recursive',
+        props: [ 'examlist' ]
+    }
+</script>
+
+// parent
+<template>
+    <div>
+        <recursive :examlist="list"></recursive>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'parent',
+        components : { Child },
+        data () {
+            return {
+                list : {
+                    title: "title1", type: "title"
+                    examlist: [
+                        {
+                            title: "subtitle1", type: "subtitle",
+                            examlist: [
+                                { title: "A", type: "item" },
+                                { title: "B", type: "item" },
+                            ]
+                        },
+                        {
+                            title: "subtitle2", type: "subtitle",
+                            examlist: [
+                                { title: "C", type: "item" },
+                                { title: "D", type: "item" },
+                            ]
+                        },
+                        {
+                            title: "subtitle3", type: "subtitle",
+                            examlist: [
+                                { title: "E", type: "item" },
+                                { title: "F", type: "item" },
+                            ]
+                        }                          
+                    ]
+                } 
             }
         }
-    </script>
+    }
+</script>
 ~~~
 
 ## References

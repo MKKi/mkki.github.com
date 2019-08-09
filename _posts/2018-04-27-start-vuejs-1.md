@@ -55,30 +55,30 @@ categories: vue.js
 ### 반복 렌더링 디렉티브
 - `v-for`는 다른 언어에서의 for 문과 유사하다. 원본 데이터가 배열, 유사 배열인 경우 다음과 같은 형태이다.
 ~~~
-    <table>
-        <tr v-for="content in contents">
-            <td>...</td>
-        </tr>
-    </table>
+<table>
+    <tr v-for="content in contents">
+        <td>...</td>
+    </tr>
+</table>
 ~~~
 
 - 원본 데이터가 객체인 경우 다음과 같은 형태이다.
 ~~~
-    <table>
-        <tr v-for="(val, key) in contents" v-bind:value="key">
-            {% raw %}{{val}}{% endraw %}
-        </tr>
-    </table>
+<table>
+    <tr v-for="(val, key) in contents" v-bind:value="key">
+        {% raw %}{{val}}{% endraw %}
+    </tr>
+</table>
 ~~~
 
 - 인덱스 번호를 표현해야 한다면
 ~~~
-    <table>
-        <tr v-for="(val, key, index) in contents" v-bind:value="key">
-            {% raw %}{{index}}{% endraw %}
-            {% raw %}{{val}}{% endraw %}
-        </tr>
-    </table>
+<table>
+    <tr v-for="(val, key, index) in contents" v-bind:value="key">
+        {% raw %}{{index}}{% endraw %}
+        {% raw %}{{val}}{% endraw %}
+    </tr>
+</table>
 ~~~
 
 - `v-for` 디렉티브와 `v-if` 디렉티브는 함께 사용할 수 있다. 주의할 점은 `v-for` 디렉티브가 **먼저** 실행된다는 것이다.
@@ -88,7 +88,7 @@ categories: vue.js
 ### 기타 디렉티브
 - `v-pre`는 HTML 요소에 대한 컴파일을 수행하지 않는다. 다음 예에서 출력 값은 문자열 그대로인 `{{message}}`이다.
 ~~~
-    <span v-pre>{% raw %}{{message}}{% endraw %}</span>
+<span v-pre>{% raw %}{{message}}{% endraw %}</span>
 ~~~
 
 - `v-once`는 HTML 요소를 단 한 번만 렌더링하도록 설정한다. 그렇기에 Vue 인스턴스의 데이터를 변경해도 다시 렌더링을 수행하지 않는다.
@@ -99,21 +99,21 @@ categories: vue.js
 
 ## 계산형 속성
 - 연산 로직이 필요한 경우, Vue 객체를 만들 때 `computed`라는 속성과 함께 함수를 등록해 두면 마치 속성처럼 사용할 수 있다.
-~~~ javascript
-    ...
-    <span>{% raw %}{{sum}}{% endraw %}<span>
-    ...
-    var sample = new Vue({
-        el: "#examle",
-        data: { num: 0 },
-        compute {
-            sum: function(){
-                var n = Number(this.num);
-                if(Number.isNaN(n) || n < 1) return 0;
-                return ((n + 1) * n) / 2;
-            }
+~~~
+...
+<span>{% raw %}{{sum}}{% endraw %}<span>
+...
+var sample = new Vue({
+    el: "#examle",
+    data: { num: 0 },
+    compute {
+        sum: function(){
+            var n = Number(this.num);
+            if(Number.isNaN(n) || n < 1) return 0;
+            return ((n + 1) * n) / 2;
         }
-    })
+    }
+})
 ~~~
 
 - 주의해야 될 점은 다음과 같다.

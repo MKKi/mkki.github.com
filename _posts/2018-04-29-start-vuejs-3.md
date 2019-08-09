@@ -13,20 +13,20 @@ categories: vue.js
 - 다음 예에서와 같이 실행할 코드를 직접 연결할 수도 있고, 인라인 처리가 힘들면 `methods` 옵션에 메서드를 구현해놓고
 참조 시킬 수도 있다.
 ~~~
+...
+<button id="examle" v-on:click="value += temp">
+<button id="examle2" v-on:click="method1">
+...
+
+var vm = new Vue({
+    el: "#example2",
     ...
-    <button id="examle" v-on:click="value += temp">
-    <button id="examle2" v-on:click="method1">
-    ...
-    
-    var vm = new Vue({
-        el: "#example2",
-        ...
-        methods: {
-            method1 = function(e){
-                ...
-            }
+    methods: {
+        method1 = function(e){
+            ...
         }
-    })
+    }
+})
 ~~~
 > `v-on:click`은 `@click`으로 대체 가능하다.
 

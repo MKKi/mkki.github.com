@@ -28,39 +28,39 @@ categories: [vue.js, js]
 ### 이터레이터 규약
 - 이터레이터는 이터레이터 규약을 따르는 객체로, 다음 요소를 반환하는 `next()` 메서드를 구현해야 한다.
 ~~~
-    let obj = {
-        array: [1, 2, 3, 4, 5],
-        nextIndex: 0,
-        next() {
-            return this.nextIndex < this.array.length ? { value: this.array[this.nextIndex++], done: false } : { done: true };
-        }
+let obj = {
+    array: [1, 2, 3, 4, 5],
+    nextIndex: 0,
+    next() {
+        return this.nextIndex < this.array.length ? { value: this.array[this.nextIndex++], done: false } : { done: true };
     }
-    
-    console.log(obj.next().value);      // "1" 출력
-    console.log(obj.next().value);      // "2" 출력
+}
+
+console.log(obj.next().value);      // "1" 출력
+console.log(obj.next().value);      // "2" 출력
 ~~~
 
 ### 이터러블 규약
 - 이터러블은 이터러블 규약을 구현한 객체로, 반드시 `@@iterator` 메서드를 제공한다. 즉, `Symbol.iterator` 심볼을 프로퍼티 키로 갖고 있으며
 `@@iterator` 메서드는 항상 이터레이터 객체를 반환한다.
 ~~~
-    let obj = {
-        array: [1, 2, 3, 4, 5],
-        nextIndex: 0,
-        [Symbol.iterator]: function() {
-            return {
-                array: this.array,
-                nextIndex: this.nextIndex,
-                next: function() {
-                    this.nextIndex < this.array.length ? { value: this.array[this.nextIndex++], done: false } : { done: true };
-                }
+let obj = {
+    array: [1, 2, 3, 4, 5],
+    nextIndex: 0,
+    [Symbol.iterator]: function() {
+        return {
+            array: this.array,
+            nextIndex: this.nextIndex,
+            next: function() {
+                this.nextIndex < this.array.length ? { value: this.array[this.nextIndex++], done: false } : { done: true };
             }
         }
-    };
-    
-    let iterable = obj[Symbol.iterator]();
-    console.log(iterable.next().value);      // "1" 출력
-    console.log(iterable.next().value);      // "2" 출력
+    }
+};
+
+let iterable = obj[Symbol.iterator]();
+console.log(iterable.next().value);      // "1" 출력
+console.log(iterable.next().value);      // "2" 출력
 ~~~
 
 ### 제너레이터
@@ -69,111 +69,111 @@ categories: [vue.js, js]
 중지 지점에서부터 다시 실행되어 다음 `yield` 값을 반환한다.
 - 제너레이터 함수는 `function*`으로 표기한다.
 ~~~
-    function* generator_function() {
-        yield 1,
-        yield 2,
-        yield 3,
-        yield 4,
-        yield 5
-    }
-    
-    const generator = generator_function();
-    
-    console.log(generator.next().value);    // "1" 출력
-    console.log(generator.next().value);    // "2" 출력
-    
-    const iterable = generator[Symbol.iterator]();
-    
-    console.log(generator.next().value);    // "3" 출력
-    console.log(generator.next().value);    // "4" 출력
-    ...
+function* generator_function() {
+    yield 1,
+    yield 2,
+    yield 3,
+    yield 4,
+    yield 5
+}
+
+const generator = generator_function();
+
+console.log(generator.next().value);    // "1" 출력
+console.log(generator.next().value);    // "2" 출력
+
+const iterable = generator[Symbol.iterator]();
+
+console.log(generator.next().value);    // "3" 출력
+console.log(generator.next().value);    // "4" 출력
+...
 ~~~
 
 - `return(value)` 메서드를 사용하여 도중에 하차할 수도 있다.
 ~~~
-    function* generator_function() {
-        yield 1;
-        yield 2;
-        yield 3;
-    }
-    
-    var generator = generator_function();
-    
-    console.log(generator.next().value);          // "1" 출력
-    console.log(generator.return(4).value);       // "4" 출력
-    console.log(generator.next().done);     // "true" 출력
+function* generator_function() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+var generator = generator_function();
+
+console.log(generator.next().value);          // "1" 출력
+console.log(generator.return(4).value);       // "4" 출력
+console.log(generator.next().done);     // "true" 출력
 ~~~
 
 - `yield*` 키워드는 다른 이터러블 객체를 순회한 후 yield 할 수 있게 해준다.
 ~~~
-    function* generator_function1() {
-        yield 2;
-        yield 3;
-    }
-    
-    function* generator_function2() {
-        yield 1;
-        yield* generator_function1();
-        yield* [4, 5];
-    }
-    
-    var generator = generator_function2();
-    
-    console.log(generator.next().value);          // "1" 출력
-    console.log(generator.next().value);          // "2" 출력
-    console.log(generator.next().value);          // "3" 출력
-    console.log(generator.next().value);          // "4" 출력
-    console.log(generator.next().value);          // "5" 출력
-    console.log(generator.next().done);           // "true" 출력
+function* generator_function1() {
+    yield 2;
+    yield 3;
+}
+
+function* generator_function2() {
+    yield 1;
+    yield* generator_function1();
+    yield* [4, 5];
+}
+
+var generator = generator_function2();
+
+console.log(generator.next().value);          // "1" 출력
+console.log(generator.next().value);          // "2" 출력
+console.log(generator.next().value);          // "3" 출력
+console.log(generator.next().value);          // "4" 출력
+console.log(generator.next().value);          // "5" 출력
+console.log(generator.next().done);           // "true" 출력
 ~~~
 
 - `for...of` 루프는 이터러블 객체를 `next()` 메서드를 사용하지 않고 편하게 순회할 수 있게 도와준다.
 ~~~
-    function* generator_function1() {
-            yield 2;
-            yield 3;
-    }
-        
-    function* generator_function2() {
-        yield 1;
-        yield* generator_function1();
-        yield* [4, 5];
-    }
+function* generator_function1() {
+        yield 2;
+        yield 3;
+}
     
-    for(let value of generator_function2()) {
-        console.log(value);
-    }
-    
-    let arr = [1, 2, 3]
-    for(let value of arr) {
-        console.log(value);
-    }
+function* generator_function2() {
+    yield 1;
+    yield* generator_function1();
+    yield* [4, 5];
+}
+
+for(let value of generator_function2()) {
+    console.log(value);
+}
+
+let arr = [1, 2, 3]
+for(let value of arr) {
+    console.log(value);
+}
 ~~~
 
 ### 꼬리 호출 최적화(Tail Call Optimization)
 - 함수 끝에서 `return` 문에 함수를 호출하면 새로운 실행 스택을 만들지 않고 기존 스택을 재사용할 수 있게 해준다.
 ~~~
-    "use strict";
+"use strict";
+
+function add(x, y) {
+    return x+y;
+}
+
+function add1(x, y) {
+    x = parseInt(x);
+    y = parseInt(y);
     
-    function add(x, y) {
-        return x+y;
-    }
+    // tail call
+    return add(x, y);
+}
+
+function add2(x, y) {
+    x = parseInt(x);
+    y = parseInt(y);
     
-    function add1(x, y) {
-        x = parseInt(x);
-        y = parseInt(y);
-        
-        // tail call
-        return add(x, y);
-    }
-    
-    function add2(x, y) {
-        x = parseInt(x);
-        y = parseInt(y);
-        
-        // not tail call
-        return 0 + add(x, y);
-    }
+    // not tail call
+    return 0 + add(x, y);
+}
 ~~~
 
 ## 프록시
@@ -190,19 +190,19 @@ categories: [vue.js, js]
 ### 프록시 API
 - 프록시는 `Proxy` 생성자로 생성하며, `target`과 `handler`를 인자로 받는다.
 ~~~
-    var target = {
-        age: 12
-    };
-    
-    var handler = {};
-    
-    var proxy = new Proxy(target, handler);
-    
-    proxy.name = "foo";
-    console.log(target.name);   // "foo" 출력
-    console.log(proxy.name);    // "foo" 출력
-    console.log(target.age);    // "12" 출력
-    console.log(proxy.age);     // "12" 출력    
+var target = {
+    age: 12
+};
+
+var handler = {};
+
+var proxy = new Proxy(target, handler);
+
+proxy.name = "foo";
+console.log(target.name);   // "foo" 출력
+console.log(proxy.name);    // "foo" 출력
+console.log(target.age);    // "12" 출력
+console.log(proxy.age);     // "12" 출력    
 ~~~
 
 ### 트랩
@@ -211,17 +211,17 @@ categories: [vue.js, js]
 
 - 다음은 `get` 메서드의 예이다.
 ~~~
-    var proxy = new Proxy({
-        age: 12
-    }, {
-        get(target, property, receiver) {
-            if (property in target) {
-                return target[property];
-            }
-            
-            return "none";
+var proxy = new Proxy({
+    age: 12
+}, {
+    get(target, property, receiver) {
+        if (property in target) {
+            return target[property];
         }
-    };
+        
+        return "none";
+    }
+};
 ~~~
 > `receiver`는 접근하려는 프로퍼티가 위치한 객체의 참조값이다. `target.age`이면 `target`, `proxy.age`이면 `proxy`가 된다.
 

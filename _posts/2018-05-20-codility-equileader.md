@@ -13,51 +13,51 @@ categories: [codility]
 `leader element`를 찾고, 배열을 순회하면서 `EquiLeader`를 찾는 문제이다. 
 
 [문제 보기](https://app.codility.com/programmers/lessons/8-leader/equi_leader)
-~~~
-    public class Solution {
-        public int solution(int[] A) {
-            // Boyer-Moore Majority Vote Algorithm
-            int cnt = 1;
-            int el = A[0];
-            
-            for(int i=1; i<A.length; i++) {
-                if(A[i] == el) {
-                    cnt++;
-                } else{
-                    cnt--;
-                }
-                if(cnt == 0) {
-                    cnt = 1;
-                    el = A[i];
-                }
+~~~java
+public class Solution {
+    public int solution(int[] A) {
+        // Boyer-Moore Majority Vote Algorithm
+        int cnt = 1;
+        int el = A[0];
+        
+        for(int i=1; i<A.length; i++) {
+            if(A[i] == el) {
+                cnt++;
+            } else{
+                cnt--;
             }
-            
-            // check el is a leader
-            cnt = 0;
-            for(int n : A) {
-                if(n == el) {
-                    cnt++;
-                }
+            if(cnt == 0) {
+                cnt = 1;
+                el = A[i];
             }
-            
-            if(cnt <= (A.length / 2)) return 0;
-            
-            // find # of equi-leader case
-            int totalCnt = 0;
-            int cntLeftPart = 0;
-            for(int i=0; i<A.length; i++) {
-                if(A[i] == el) {
-                    cntLeftPart++;
-                }
-                int cntRightPart = cnt - cntLeftPart;
-                if(cntLeftPart > (i + 1) / 2 && cntRightPart > (A.length - 1 - i) / 2) {
-                    totalCnt++;
-                }
-            }
-            
-            return totalCnt;
         }
+        
+        // check el is a leader
+        cnt = 0;
+        for(int n : A) {
+            if(n == el) {
+                cnt++;
+            }
+        }
+        
+        if(cnt <= (A.length / 2)) return 0;
+        
+        // find # of equi-leader case
+        int totalCnt = 0;
+        int cntLeftPart = 0;
+        for(int i=0; i<A.length; i++) {
+            if(A[i] == el) {
+                cntLeftPart++;
+            }
+            int cntRightPart = cnt - cntLeftPart;
+            if(cntLeftPart > (i + 1) / 2 && cntRightPart > (A.length - 1 - i) / 2) {
+                totalCnt++;
+            }
+        }
+        
+        return totalCnt;
     }
+}
 ~~~
 
 ### References

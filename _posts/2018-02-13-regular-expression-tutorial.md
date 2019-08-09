@@ -58,24 +58,24 @@ categories: regex
 
 - 다음은 표현식의 예이다. 
 ~~~
-    // e-mail
-    ^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[\w]+)
-    ^[_0-9a-zA-Z-]+@[0-9a-zA-Z-]+(.[_0-9a-zA-Z]+)*$
-    
-    // mobile phone
-    ^01(?:0|1|[6-9]) - (\d{3,4}) - \d{4}$
-    
-    // landline phone
-    ^\d{2,3} - \d{3,4} - \d{4}&
-    
-    // resident registration number
-    \d{6} \- [1-4]\d{6} 
-    
-    // IP Address
-    ([0-9]{1,3})\.{([0-9]{1,3})\.{([0-9]{1,3})\.{([0-9]{1,3})
-    
-    // URL
-    ([\\p{Alnum}]+)://([a-z0-9.\\-&%=?:@~\\_]+)“
+// e-mail
+^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[\w]+)
+^[_0-9a-zA-Z-]+@[0-9a-zA-Z-]+(.[_0-9a-zA-Z]+)*$
+
+// mobile phone
+^01(?:0|1|[6-9]) - (\d{3,4}) - \d{4}$
+
+// landline phone
+^\d{2,3} - \d{3,4} - \d{4}&
+
+// resident registration number
+\d{6} \- [1-4]\d{6} 
+
+// IP Address
+([0-9]{1,3})\.{([0-9]{1,3})\.{([0-9]{1,3})\.{([0-9]{1,3})
+
+// URL
+([\\p{Alnum}]+)://([a-z0-9.\\-&%=?:@~\\_]+)“
 ~~~
 
 ---
@@ -85,52 +85,52 @@ categories: regex
 - `java.util.regex` 패키지 내에는 주어진 정규 표현식으로부터 패턴을 생성하는 `Pattern` 클래스, 
 문자열이 주어진 패턴과 일치하는지 확인하는 `Matcher` 클래스가 존재한다.  
 ~~~ java
-    // 패턴 생성
-    static Pattern compile(String regex);
-    
-    // 패턴을 검사하는 Mather 객체 반환
-    static Matcher matcher (CharSequence input); 
-    
-    // 정규 표현식을 String으로 처리
-    String pattern();
-    
-    // 패턴에 따라 분리
-    String split(CharSequence input);
+// 패턴 생성
+static Pattern compile(String regex);
+
+// 패턴을 검사하는 Mather 객체 반환
+static Matcher matcher (CharSequence input); 
+
+// 정규 표현식을 String으로 처리
+String pattern();
+
+// 패턴에 따라 분리
+String split(CharSequence input);
 ~~~
 
 - `String` 클래스에는 정규표현식을 지원하는 메서드들이 존재한다.
 ~~~java
-    // 문자열과 패턴의 일치 여부 반환
-    boolean matches(String regex);
-    
-    // 패턴과 일치하는 모든 부분을 치환
-    String replaceAll(String regex, String replace);
-    
-    // 패턴과 일치하는 첫 부분을 치환
-    String replaceFirst(String regex, String replaceStr);
-    
-    // 패턴과 일치하는 구분자를 기준으로 분할하여 배열로 반환
-    String[] splite(String regex);
+// 문자열과 패턴의 일치 여부 반환
+boolean matches(String regex);
+
+// 패턴과 일치하는 모든 부분을 치환
+String replaceAll(String regex, String replace);
+
+// 패턴과 일치하는 첫 부분을 치환
+String replaceFirst(String regex, String replaceStr);
+
+// 패턴과 일치하는 구분자를 기준으로 분할하여 배열로 반환
+String[] splite(String regex);
 ~~~
 
 - 다음은 활용 예이다.
 ~~~java
-    // input data
-    String data[] = {
-    	"aab", "baa", "dFd", "aaa", "Cab", "ca", 
-    	"c12", "cAA", "cab", "dde", "aaaaab3"
-    };
-    
-    // create pattern
-    Pattern pattern = Pattern.compile("c[a-z]*");
+// input data
+String data[] = {
+    "aab", "baa", "dFd", "aaa", "Cab", "ca", 
+    "c12", "cAA", "cab", "dde", "aaaaab3"
+};
 
-    // print matched data. (ouput) : ca cab
-    for(int i=0; i<data.length; i++) {
-        Matcher match = pattern.matcher(data[i]);
-        if(match.matches()) {
-            System.out.print(data[i]+" ");
-        }
+// create pattern
+Pattern pattern = Pattern.compile("c[a-z]*");
+
+// print matched data. (ouput) : ca cab
+for (int i=0; i<data.length; i++) {
+    Matcher match = pattern.matcher(data[i]);
+    if (match.matches()) {
+        System.out.print(data[i]+" ");
     }
+}
 ~~~
 
 추가적 내용에 관한 추천 포스팅은 [Outsider님 블로그][outsider]
