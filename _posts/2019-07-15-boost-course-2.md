@@ -279,10 +279,10 @@ CORS 요청은 4가지가 존재한다.
     - `GRANT`, `REVOKE`
     
 권한은 다음과 같이 부여할 수 있다.
-~~~
-    grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
-    grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
-    flush privileges;
+~~~sql
+grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
+grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
+flush privileges;
 ~~~
 - `@'%'`는 어떤 클라이언트에서든 접근 가능
 - `@'localhost'`는 해당 클라이언트만 접근 가능
