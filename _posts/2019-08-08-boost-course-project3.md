@@ -33,15 +33,16 @@ categories: [boostcourse]
 - `animation-play-state`: 애니메이션 실행과 일시정지 여부
     
 `MDN`에서 참고한 `animation` 속성의 예는 다음과 같다.
-~~~
-    /* @keyframes duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
-    animation: 3s ease-in 1s 2 reverse both paused slidein;
-    
-    @keyframes slidein {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
-    }
-~~~
+
+```css
+/* @keyframes duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+animation: 3s ease-in 1s 2 reverse both paused slidein;
+
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+```
 
 제출한 코드에는 포함되지 않았지만, `loop` 중 마지막 요소에서 첫 요소의 넘어갈 때의 부드러운 애니메이션 처리를 위해
 [링크](https://poiemaweb.com/fastcampus-exercise/carousel-slider-ui)를 참고하며 고민해보았다. 그리고 이 방법이 최선인지 리뷰에서 확인해보고자 했으나,
@@ -52,41 +53,45 @@ categories: [boostcourse]
 
 소스코드 네 번째 루브릭을 진행하던 중, 강의 내용에서 `ECMAScript6`의 `template literals`를 활용해보라는 내용이 있었기에 다음과 같이 작성했다.
 예상대로 `template` 코드가 분리되지 않아 `Fail` 처리되었다.
-```
-    const template = (data) => {
-        return `
-            <div>${data.id}</div>
-        `
-    }
+```javascript
+const template = (data) => {
+    return `
+        <div>${data.id}</div>
+    `
+}
 ```
 
 리뷰어님의 조언에 따라 `template literals`를 `HTML` 내에 위치시켜보았지만, `string interpolation`이 사라져서 적용이 어려웠다.
-~~~
-    // html
-    <script type="my-template" id="custom-template">
-        `
-            <div>${data.id}</div>
-        `
-    </script>
-    
-    // js
-    const template = document.querySelector("#custom-template").innerHTML;
-    console.log(template); // '<div></div>'
-~~~
+- html
+```html
+<script type="my-template" id="custom-template">
+    `
+        <div>${data.id}</div>
+    `
+</script>
+```
+
+- js
+```javascript
+const template = document.querySelector("#custom-template").innerHTML;
+console.log(template); // '<div></div>'
+```
 
 어쩔 수 없이 `interpolation` 처리 된 문자열을 `String.prototype.replace()`로 치환해주는 작업으로 구현을 진행했다.
 > `template literals`가 스크립트 단의 기능이라 분리시키면 안되는 것인가? 다음 프로젝트 제출할 때 한 번 더 질문해봐야겠다.
 
-~~~
-    // html
-    <script type="my-template" id="custom-template">
-            <div>{data.id}</div>
-    </script>
-    
-    // js
-    const template = document.querySelector("#custom-template").innerHTML;
-    template.replace("{data.id}", data.id);
-~~~
+- html
+```html
+<script type="my-template" id="custom-template">
+    <div>{data.id}</div>
+</script>
+```
+
+- js
+```javascript
+const template = document.querySelector("#custom-template").innerHTML;
+template.replace("{data.id}", data.id);
+```
 
 ### 크로스브라우징 이슈
 ![review-result](https://user-images.githubusercontent.com/28993371/62688371-ace70400-ba03-11e9-8243-2c3abe2b103c.JPG)
