@@ -76,6 +76,7 @@ categories: [boostcourse]
 
 어쩔 수 없이 `interpolation` 처리 된 문자열을 `String.prototype.replace()`로 치환해주는 작업으로 구현을 진행했다.
 > `template literals`가 스크립트 단의 기능이라 분리시키면 안되는 것인가? 다음 프로젝트 제출할 때 한 번 더 질문해봐야겠다.
+
 ~~~
     // html
     <script type="my-template" id="custom-template">
