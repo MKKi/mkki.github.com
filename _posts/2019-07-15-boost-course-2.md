@@ -14,13 +14,13 @@ categories: [boostcourse]
 자바스크립트의 타입은 **런타임**에 결정된다. `typeof`로 변수 타입을 확인할 수 있다.
 
 `typeof` 키워드로 확인할 수 없는 경우에는 `Object.prototype.toString.call()`로 확인할 수 있다.
-~~~
-    Object.prototype.toString.call("foo");
-    > "[object String]"
-    Object.prototype.toString.call(15);
-    > "[object Number]"
-    Object.prototype.toString.call(undefined);
-    > "[object Undefined]"
+~~~javascript
+Object.prototype.toString.call("foo");
+> "[object String]"
+Object.prototype.toString.call(15);
+> "[object Number]"
+Object.prototype.toString.call(undefined);
+> "[object Undefined]"
 ~~~
 
 `==` 연산자는 암시적으로 타입을 변경하기에, `===` 연산자를 사용하는 것이 낫다.
@@ -35,12 +35,12 @@ categories: [boostcourse]
 > `for-in`은 **속성 이름**을 통해 반복, `for-of`는 **속성 값**을 통해 반복한다.
 
 `forEach`는 `Array` 객체에서만 사용 가능한 메서드이다.
-~~~
-    var arr = [1, 2, 3];
-    arr.forEach(v => console.log(v));
-    > 1
-    > 2
-    > 3
+~~~javascript
+var arr = [1, 2, 3];
+arr.forEach(v => console.log(v));
+> 1
+> 2
+> 3
 ~~~
 
 ### 자바스크립트 함수
@@ -63,29 +63,29 @@ categories: [boostcourse]
 자바스크립트는 **함수 스코프**를 따르고, 함수 선언 시 함수 스코프가 생성된다.
 
 함수를 어디서 선언했는지에 따라 함수 스코프를 결정하는데, 이를 `Lexical Scope`라고 한다.
-~~~
-    var x = 1;
-    
-    function foo() {
-      var x = 10;
-      bar();
-    }
-    
-    function bar() {
-      console.log(x);
-    }
-    
-    foo(); // 10
-    bar(); // 1
+~~~javascript
+var x = 1;
+
+function foo() {
+  var x = 10;
+  bar();
+}
+
+function bar() {
+  console.log(x);
+}
+
+foo(); // 10
+bar(); // 1
 ~~~
 
 ## WEB UI 개발- FE
 ---
 ### window 객체(setTimeout)
 브라우저의 전역 객체이다. 디폴트 개념이기 때문에 생략할 수 있다.
-~~~
-    window.setTimeout(...);
-    setTimeout(...);
+~~~javascript
+window.setTimeout(...);
+setTimeout(...);
 ~~~
 
 `callback function`은 즉시 시작되지 않고, 필요한 시점에 실행되는 함수이다.
@@ -132,15 +132,15 @@ categories: [boostcourse]
 포멧으로 `JSON(Javascript Object Notation)`이 사실상 표준으로 자리잡았다.
 
 `XMLHttpRequest`를 이용한 예
-~~~
-    function ajax(data) {
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", function() {
-            console.log(this.responseText);
-        });    
-        oReq.open("GET", "http://www.example.org/getData?data=data");//parameter를 붙여서 보낼수있음. 
-        oReq.send();
-    }
+~~~javascript
+function ajax(data) {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function() {
+        console.log(this.responseText);
+    });    
+    oReq.open("GET", "http://www.example.org/getData?data=data");//parameter를 붙여서 보낼수있음. 
+    oReq.send();
+}
 ~~~
 > `Fetch API`로 쉽게 비동기 통신이 가능하다.
 
@@ -293,9 +293,9 @@ CORS 요청은 4가지가 존재한다.
 `SELECT` 구문에서 칼럼 합성은 `CONCAT()` 함수를 사용하면 된다.
 
 `CAST(expression AS type)`, `CONVERT(expression, type)`으로 형변환도 가능하다.
-~~~
-    select cast(now() as date);
-    select cast(1-2 as unsigned);
+~~~sql
+select cast(now() as date);
+select cast(1-2 as unsigned);
 ~~~
 
 ### DDL(create, drop)

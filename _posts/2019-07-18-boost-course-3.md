@@ -48,50 +48,50 @@ categories: [boostcourse]
 - `delete object["key"]`
 
 객체의 탐색은 `Object.keys()` 혹은 `for-in`, `forEach`를 사용한다.
-~~~
-    for (key in obj) {
-        console.log(obj[key]);
-    }
-    
-    Object.keys(obj).forEach(function(key) {
-        console.log(obj[key]);
-    });
+~~~javascript
+for (key in obj) {
+    console.log(obj[key]);
+}
+
+Object.keys(obj).forEach(function(key) {
+    console.log(obj[key]);
+});
 ~~~
 
 [데이터](https://gist.github.com/nigayo/ade2c3f74417fc202c8097214c965f27)에서 숫자인 프로퍼티의 객체 키 배열을 리턴
-~~~
-    let search = (data, found = []) => {
-      Object.keys(data).forEach((key) => {
-        if(typeof data[key] === 'number'){
-          found.push(key);
-          return found;
-        }
-        if(typeof data[key] === 'object'){
-          search(data[key], found);
-        }
-      });
+~~~javascript
+let search = (data, found = []) => {
+  Object.keys(data).forEach((key) => {
+    if(typeof data[key] === 'number'){
+      found.push(key);
       return found;
-    };
-    
-    console.log(search(data));
+    }
+    if(typeof data[key] === 'object'){
+      search(data[key], found);
+    }
+  });
+  return found;
+};
+
+console.log(search(data));
 ~~~
 
 [데이터](https://gist.github.com/nigayo/a9a118977f82780441db664d6785efe3)에서 type이 sk인 객체의 `name`을 배열로 리턴
-~~~
-    let search = (datas, found = []) => {
-        datas.forEach((data) => {
-            if (data.type && data.type === 'sk') {
-                found.push(data.name);
-                return found;
-            }
-            if (data.childnode) {
-                filter(data.childnode, found);
-            }
-        });
-        return found;
-    }
-    
-    console.log(search(data));
+~~~javascript
+let search = (datas, found = []) => {
+    datas.forEach((data) => {
+        if (data.type && data.type === 'sk') {
+            found.push(data.name);
+            return found;
+        }
+        if (data.childnode) {
+            filter(data.childnode, found);
+        }
+    });
+    return found;
+}
+
+console.log(search(data));
 ~~~
 
 ## DOM API활용 - FE
@@ -154,38 +154,38 @@ categories: [boostcourse]
 그래서 등장한 것이 `requestAnimationFrame`이다.
 
 사용 예시는 다음과 같다.
-~~~
-    var count = 0;
-    var el=document.querySelector(".outside");
-    el.style.left = "0px";
-    
-    function run() {
-       if(count > 70) return;
-       count = count + 1;
-       el.style.left =  parseInt(el.style.left) + count + "px";
-       requestAnimationFrame(run);
-    }
-    
-    requestAnimationFrame(run);
+~~~javascript
+var count = 0;
+var el=document.querySelector(".outside");
+el.style.left = "0px";
+
+function run() {
+   if(count > 70) return;
+   count = count + 1;
+   el.style.left =  parseInt(el.style.left) + count + "px";
+   requestAnimationFrame(run);
+}
+
+requestAnimationFrame(run);
 ~~~
 
 ### CSS3 transition 활용
 CSS3의 `transition`과 `transform`을 이용하면 좋은 성능의 애니메이션 구현을 할 수 있다.
 다음과 같이 단축 CSS 문법을 사용할 수 있다.
-~~~
-    div {
-        transition: <property> <duration> <timing-function> <delay>;
-    }
+~~~css
+div {
+    transition: <property> <duration> <timing-function> <delay>;
+}
 ~~~
 
 `hover` 시에 요소가 좌측 상단에서, 우측 하단으로 움직이는 애니메이션 구현
-~~~
-    var el = document.querySelector(".sample");
-    
-    el.addEventListener("mouseover", function (e) {
-        this.style.left = 70 + "vw";
-        this.style.top = 70 + "vh";
-    });
+~~~javascript
+var el = document.querySelector(".sample");
+
+el.addEventListener("mouseover", function (e) {
+    this.style.left = 70 + "vw";
+    this.style.top = 70 + "vh";
+});
 ~~~
 
 Viewport-percentage lengths
@@ -212,14 +212,14 @@ Viewport-percentage lengths
 - `Load` 이벤트는 브라우저에 렌더링이 완료되기까지의 시간
 
 보통 초기작업이 필요한 경우 다음과 같이 코드를 작성한다.
-~~~
-    function init() {
-        ...
-    }
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        init();
-    });
+~~~javascript
+function init() {
+    ...
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    init();
+});
 ~~~
 
 ### Event delegation
@@ -237,25 +237,25 @@ Viewport-percentage lengths
 > 서버와 클라이언트 모두에서 작업 가능하다.
 
 `HTML Template`는 일종의 포멧이라고 볼 수 있다. 다음은 사용 예이다.
-~~~   
-    const template = "<h1>{title}</h1>"
+~~~javascript
+const template = "<h1>{title}</h1>"
 
-    const templateParser = (datas) =>
-        datas.reduce((acc, cur) => acc + template.replace("{title}", cur.title), "");
-    
-    let resultHTML = templateParser(datas);
+const templateParser = (datas) =>
+    datas.reduce((acc, cur) => acc + template.replace("{title}", cur.title), "");
+
+let resultHTML = templateParser(datas);
 ~~~
 
 다음은 `template literal`을 이용한 코드이다.
-~~~
-    let resultHTML = "";
-    datas.forEach((data) => {
-        resultHTML += `
-            <h1>${data.title}</h1>
-        `;
-    });
-    
-    document.querySelector("body").innerHTML = resultHTML;
+~~~javascript
+let resultHTML = "";
+datas.forEach((data) => {
+    resultHTML += `
+        <h1>${data.title}</h1>
+    `;
+});
+
+document.querySelector("body").innerHTML = resultHTML;
 ~~~
 
 ## Tab UI 실습 - FE

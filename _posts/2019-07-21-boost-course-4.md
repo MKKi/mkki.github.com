@@ -65,12 +65,12 @@ categories: [boostcourse]
     - 주입 대상이되는 `bean`을 컨테이너에 찾아 주입하는 어노테이션
     - `Constructor Injection`을 사용하기를 권장한다. `null` 값 방지, 생성자 파라미터로 의존관계 파악, `final` 키워드로 `immutable`하게 관리 가능
         ~~~
-            private final Engine engine;
-            
-            @Autowired
-            public Car(Engine engine) {
-                this.engine = engine;
-            }
+        private final Engine engine;
+        
+        @Autowired
+        public Car(Engine engine) {
+            this.engine = engine;
+        }
         ~~~
                 
 ## Spring JDBC - BE
