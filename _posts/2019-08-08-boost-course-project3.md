@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[boostcourse] 예약 시스템 - 메인페이지"
+title:  "[boostcourse] 예약 시스템: 메인페이지"
 date:   2019-08-08 17:50:11 +0900
 background: '/img/posts/02.jpg'
 categories: [boostcourse]
@@ -10,7 +10,7 @@ categories: [boostcourse]
 
 `#부스트코스` `#웹프로그래밍`
 
-## 예약 시스템 - 메인페이지
+## 예약 시스템: 메인페이지
 ---
 **부스트코스 에이스 2기**에 선발되어 첫 미션을 진행했다. 프로젝트 세부 루브릭은 다음과 같다.
 
