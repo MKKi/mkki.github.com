@@ -10,7 +10,6 @@ categories: [boostcourse]
 
 `#부스트코스` `#웹프로그래밍`
 
-## 예약 시스템: 상세페이지
 ---
 이번 포스팅은 두 번째 미션인 상세페이지 구현의 백엔드 관련 내용이다.
 
@@ -21,6 +20,7 @@ categories: [boostcourse]
 ![mission-2-2](https://user-images.githubusercontent.com/28993371/63611044-f34c7d80-c615-11e9-8324-7188aea7a8cc.JPG)
 
 ### SQL Query
+---
 데이터 구조가 지난 미션보다 복잡했는데 쿼리를 작성하며 여러 궁금증이 생겼다.
 
 #### JOIN
