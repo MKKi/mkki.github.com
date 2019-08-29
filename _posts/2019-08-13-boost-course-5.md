@@ -247,7 +247,7 @@ console.log(arrow.call({ x: 5 }));  // 3
 ```
 
 `arrow function`을 사용하지 말아야 할 경우는 다음과 같다.
-1. 메서드를 정의하는 경우
+##### 메서드를 정의하는 경우
 - 메서드의 경우 호출한 객체를 가리켜야하지만, 아래와 같이 `this`가 전역 객체를 가리킨다.
 
 ```javascript
@@ -259,13 +259,13 @@ const obj = {
 obj.getName();  // undefined
 ```
 
-2. `prototype`에 메서드를 할당하는 경우
-- 1번과 동일한 문제가 발생한다.
+##### `prototype`에 메서드를 할당하는 경우
+메서드를 정의하는 경우와 동일한 문제가 발생한다.
 
-3. 생성자 함수를 사용할 경우
+##### 생성자 함수를 사용할 경우
 - `arrow function`은 `prototype` 프로퍼티를 갖고 있지 않기에 `constructable`하지 않다.
 
-4. `addEventListener` 함수의 콜백 함수로 사용할 경우
+##### `addEventListener` 함수의 콜백 함수로 사용할 경우
 - 일반적으로 `addEventListener` 함수에 사용되는 콜백 함수 내부의 `this`는 이벤트 리스너에 바인딩된 요소를 가리킨다.
 그러나 `arrow function`을 사용할 경우 상위 컨텍스트로 `this`가 바인딩된다.
 
