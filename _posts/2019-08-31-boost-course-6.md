@@ -70,7 +70,7 @@ var Animal = class {
 ```
 
 그리고 `constructor` 내부에서 선언과 초기화가 이루어진 클래스 필드는 언제나 `public`이다.
-> 현재 **TC39**에서 `private`, `static` 필드에 관련된 표준안이 제안되었다. 현재 **stage3** 단계로, 다음 ECMAScript 버전에 포함될 예정이다.
+> **TC39**에서 `private`, `static` 필드에 관련된 표준안이 제안되었다. 현재 **stage3** 단계로, 다음 ECMAScript 버전에 포함될 예정이다.
 
 #### ES6 Class extends
 `extends` 키워드는 클래스 선언/표현식에서 다른 클래스의 자식 클래스를 생성하기 위해 사용된다.
