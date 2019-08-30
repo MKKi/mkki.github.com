@@ -259,13 +259,13 @@ const obj = {
 obj.getName();  // undefined
 ```
 
-##### `prototype`에 메서드를 할당하는 경우
+##### prototype에 메서드를 할당하는 경우
 메서드를 정의하는 경우와 동일한 문제가 발생한다.
 
 ##### 생성자 함수를 사용할 경우
 - `arrow function`은 `prototype` 프로퍼티를 갖고 있지 않기에 `constructable`하지 않다.
 
-##### `addEventListener` 함수의 콜백 함수로 사용할 경우
+##### addEventListener 함수의 콜백 함수로 사용할 경우
 - 일반적으로 `addEventListener` 함수에 사용되는 콜백 함수 내부의 `this`는 이벤트 리스너에 바인딩된 요소를 가리킨다.
 그러나 `arrow function`을 사용할 경우 상위 컨텍스트로 `this`가 바인딩된다.
 
