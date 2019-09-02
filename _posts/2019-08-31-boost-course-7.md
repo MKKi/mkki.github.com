@@ -57,6 +57,46 @@ public class TestController {
 3. 다음 요청부터는 **session id** 값이 포함된 쿠키가 헤더에 포함된다.
 4. 서버는 이를 통해 클라이언트를 식별한다.
 
+**Spring MVC**에서는 `@SessionAttribute` 애너테이션을 사용하여 세션을 사용할 수 있다.
+
+컨트롤러 위에 사용될 경우 `@ModelAttribute` 애너테이션으로 같은 이름의 객체에 세션 값을 설정할 수 있다.
+
+```java
+@Controller
+@SessionAttribute("member")
+public class MemberController {
+    @PostMapping("/add")
+    public String addMember(@ModelAttribute("member") Member member) {
+        return "redirect:/";
+    }
+}
+```
+
+메서드에 `@SessionAttribute` 애너테이션을 사용하여 파라미터로 지정된 세션 정보를 읽어올 수도 있다.
+
+```java
+@Controller
+public class MemberController {
+    @PostMapping("/add")
+    public String addMember(@SessionAttribute("member") Member member) {
+        return "redirect:/";
+    }
+}
+```
+
+내장 타입인 `SessionStatus`를 사용하여 세션 객체를 제거할 수도 있다.
+
+```java
+@Controller
+@SessionAttribute("member")
+public class MemberController {
+    @PostMapping("/add")
+    public String addMember(@ModelAttribute("member") Member member, SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+    }
+}
+```
+
 #### Cache
 브라우저 캐시는 쿠키와 같이 브라우저에 데이터를 저장한다는 점에서 유사하지만,
 **빠른 렌더링과 네트워크 자원 절약**이라는 목적에서 명확한 차이점이 존재한다.
@@ -70,8 +110,35 @@ public class TestController {
 - **Gateway Cache(Reverse Proxy Cache)**는 실제 서버 앞단에 설치되며, 캐시와 요청 분배를 통해 응답 성능과 확장성을 높여준다.
 로드 밸런서를 사용해서 요청을 실제 서버가 아닌 Gateway Cache로 라우팅한다. **CDN**이 대표적인 예이다.
 
+### 인터셉터
+![spring-request-lifecycle](https://user-images.githubusercontent.com/28993371/64099627-b5352380-cda4-11e9-914b-9d0fa47a3d9b.jpg)
+> Spring MVC request life-cycle
+
+**인터셉터(Interceptor)**는 `DispatcherServlet`와 `Handler` 사이에서 동작한다. 
+**Servlet WebApplicationContext**에 등록하여 사용할 수 있다. **HTTP Protocol 단위**의 인증, 권한 처리에 사용된다.
+
+**필터(Filter)**는 `DispatcherServlet` 앞 단에서 클라이언트 요청과 응답 전에 처리해야될 로직을 수행한다.
+**Root WebAppliactionContext**에 등록하여 사용할 수 있다. 인코딩, 보안 관련 처리에 사용된다.
+
+이 외에도 둘의 차이점은 예외 처리다. 필터는 루트 컨텍스트에서 에러를 처리한다. `WAS`에서 에러 페이지를 출력해주거나,
+예외 처리를 미루어야한다. 그러나 인터셉터의 경우 컨텍스트 내에서 예외를 처리할 수 있다. 
+
+**Spring MVC**에서 인터셉터를 사용하는 방법은 다음과 같다.
+- `org.springframework.web.servlet.HandlerInterceptor` 인터페이스를 구현하거나,
+`org.springframework.web.servlet.handler.HandlerInterceptorAdapter` 클래스를 상속 받는다.
+- `WebMvcConfigurerAdapter` 클래스의 `addInterceptors()` 메서드를 오버라이딩하고 인터셉터를 등록한다.
+
+### 아규먼트 리졸버
+`아규먼트 리졸버(Argument Resolver)`는 컨트롤러 메서드의 파라미터 값으로 임의의 값을 전달할 수 있도록 도와준다.
+
+**Spring MVC**에서 아규먼트 리졸버를 사용하는 방법은 다음과 같다.
+- `org.springframework.web.method.support.HandlerMethodArgumentResolver` 인터페이스를 구현한다.
+- `supportsParameter()` 메서드를 오버라이딩하여 타입을 체크해주고, `resolveArgument()` 메서드를 오버라이딩하여 로직을 구현한다.
+- `WebMvcConfigurerAdapter` 클래스의 `addArgumentResolvers()` 메서드를 오버라이딩하고 아규먼트 리졸버를 등록한다.
+
 ## References
 ---
 - edwith, [boostcourse: Web Programming](http://www.edwith.org/boostcourse-web)
 - GeeksforGeeks, [Difference between Stateless and Stateful Protocol](https://www.geeksforgeeks.org/difference-between-stateless-and-stateful-protocol/)
 - letmecompile, [HTTP Cache 튜토리얼](https://www.letmecompile.com/http-cache-튜토리얼/)
+- supawer0728님 블로그, [(Spring)Filter와 Interceptor의 차이](https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/)
