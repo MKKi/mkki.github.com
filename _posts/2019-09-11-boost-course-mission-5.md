@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[boostcourse] 예약 시스템: 상세페이지 - 2"
+title:  "[boostcourse] 예약 시스템: 예약하기 - 2"
 date:   2019-09-11 01:34:11 +0900
 background: '/img/posts/02.jpg'
 categories: [boostcourse]
