@@ -119,7 +119,7 @@ button.addEventListener('click', () => smoothScroll(height));
 ```javascript
 document.addEventListener("DOMContentLoaded", function() {
     sendAjax("/items", function() {
-        const data = JSON.parse(this.responseText());
+        const data = JSON.parse(this.responseText);
         
         history.pushState({list: data}, "items", "/items");
     });
