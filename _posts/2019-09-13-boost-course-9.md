@@ -46,7 +46,7 @@ Logger는 `LoggerFactory.getLogger()` 메서드로 인스턴스를 반환 받아
 > Lombok을 사용하면 Annotation으로 이를 대체할 수 있다.
 
 이렇게 생성된 Logger는 Tree Hierarchy 구조로 level을 적용 받으며,
-**root logger**는 이름이 `"""`인 Logger이다.
+**root logger**는 이름이 `""`인 Logger이다.
 
 ### File Upload
 `HttpServletRequest`는 클리이언트로부터 전달 받은 multipart 데이터를 처리하는 메서드를 제공하지 않는다.
